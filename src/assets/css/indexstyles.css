@@ -1,0 +1,6 @@
+.box{
+    width:250px;
+    text-overflow:ellipsis;
+    white-space:nowrap; 
+    overflow:hidden; 
+  }
