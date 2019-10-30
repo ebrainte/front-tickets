@@ -28,6 +28,7 @@ import Carousel from "./IndexSections/Carousel.jsx";
 import Icons from "./IndexSections/Icons.jsx";
 import Login from "./IndexSections/Login.jsx";
 import Download from "./IndexSections/Download.jsx";
+import ModalG from "./IndexSections/ModalG.jsx"
 
 import {
   Badge,
@@ -91,7 +92,7 @@ class Index extends React.Component {
                               <h6 className="text-success text-uppercase">
                                 {rec.eventName}
                               </h6>
-                              <p className="description mt-3">
+                              <p className="description mt-3 box">
                                 {rec.eventDescription}
                               </p>
                               <div>
@@ -99,6 +100,7 @@ class Index extends React.Component {
                                   {rec.eventType}
                                 </Badge>
                               </div>
+                              <ModalG></ModalG>
                               <Button
                                 className="mt-4"
                                 color="success"
@@ -106,6 +108,14 @@ class Index extends React.Component {
                                 onClick={e => e.preventDefault()}
                               >
                                 Ver Mas
+                              </Button>
+                              <Button
+                                className="mt-4"
+                                color="success"
+                                href="#pablo"
+                                onClick={e => e.preventDefault()}
+                              >
+                                Comprar
                               </Button>
                             </CardBody>
                           </Card>

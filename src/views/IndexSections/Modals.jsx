@@ -46,7 +46,7 @@ class Modals extends React.Component {
     return (
       <>
         <h2 className="mt-lg mb-5">
-          <span>Javascript Components</span>
+          <span>Javascjjhhjript Components</span>
         </h2>
         <h3 className="h4 text-success font-weight-bold mb-4">Modals</h3>
         <Row>
