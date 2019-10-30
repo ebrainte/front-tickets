@@ -6,6 +6,7 @@ import { Container, Row } from "reactstrap";
 // core components
 import TicketsNavbar from "components/Navbars/TicketsNavbar.jsx";
 import CardsFooter from "components/Footers/CardsFooter.jsx";
+import { Link } from "react-router-dom";
 
 // index page sections
 import Hero from "./IndexSections/Hero.jsx";
@@ -100,23 +101,15 @@ class Index extends React.Component {
                                   {rec.eventType}
                                 </Badge>
                               </div>
-                              <ModalG></ModalG>
-                              <Button
+                              <ModalG buttonName="Ver mas" title={rec.eventName} body={rec.eventDescription}/>
+                              <Link to={"/event/" + rec._id} text="pirulito" ><Button
                                 className="mt-4"
                                 color="success"
                                 href="#pablo"
-                                onClick={e => e.preventDefault()}
-                              >
-                                Ver Mas
-                              </Button>
-                              <Button
-                                className="mt-4"
-                                color="success"
-                                href="#pablo"
-                                onClick={e => e.preventDefault()}
+                                // onClick={e => e.preventDefault()}
                               >
                                 Comprar
-                              </Button>
+                              </Button></Link>
                             </CardBody>
                           </Card>
                           </Col>
