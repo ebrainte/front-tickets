@@ -18,6 +18,8 @@
 import React from "react";
 // nodejs library that concatenates classes
 import classnames from "classnames";
+import { Link } from "react-router-dom";
+
 // reactstrap components
 import {
   FormGroup,
@@ -32,6 +34,42 @@ import {
 
 class Inputs extends React.Component {
   state = {};
+
+  
+
+constructor(props){
+  super(props);
+  
+  this.state = {
+  }
+  
+  this.updateInput = this.updateInput.bind(this);
+  this.handleSubmit = this.handleSubmit.bind(this);
+}
+  
+  
+  updateInput(event){
+    this.setState({username : event.target.value});
+    console.log(this.state.username);
+    if(event.keyCode === 13) { 
+      // this.props.push(`${this.state.where}/${this.state.what}`)
+    }
+  }
+  // handleKeyDown(event) {
+  //   if(event.keyCode === 13) { 
+  //       this.setState({username : event.target.value});
+  //       console.log(this.state);
+  //   }
+  // }
+  
+  
+  handleSubmit(){
+  console.log('Your input value is: ' + this.state)
+  //Send state to the server code
+  }
+
+
+
   render() {
     return (
       <>
@@ -44,11 +82,11 @@ class Inputs extends React.Component {
                 </small>
               </div>
               <Row>
-                <Col lg="12" md="12" sm="12">
+                <Col lg="11" md="11" sm="11">
                 <FormGroup
                     className={classnames({
                       focused: this.state.searchAltFocused
-                    })}
+                    })} onSubmit={this.handleSubmit}
                   >
                     <InputGroup className="input-group-alternative mb-4">
                       <InputGroupAddon addonType="prepend">
@@ -57,10 +95,13 @@ class Inputs extends React.Component {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
-                        placeholder="Seasdsdrch"
+                        placeholder="Busca un evento por nombre..."
                         type="text"
                         onFocus={e => this.setState({ searchAltFocused: true })}
                         onBlur={e => this.setState({ searchAltFocused: false })}
+                        onKeyDown={this.updateInput}
+                        onChange={this.updateInput}
+                        
                       />
                     </InputGroup>
                   </FormGroup>
@@ -71,7 +112,7 @@ class Inputs extends React.Component {
         </section>
       </>
     );
-  }
-}
+    
+  }}
 
 export default Inputs;

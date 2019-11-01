@@ -26,6 +26,7 @@ import "assets/css/indexstyles.css";
 
 import Index from "views/Index.jsx";
 import Event from "views/routes/Event.jsx";
+import Search from "views/routes/Search.jsx";
 import Landing from "views/examples/Landing.jsx";
 import Login from "views/examples/Login.jsx";
 import Profile from "views/examples/Profile.jsx";
@@ -36,6 +37,7 @@ ReactDOM.render(
     <Switch>
       <Route path="/" exact render={props => <Index {...props} />} />
       <Route path="/event/:handle" exact render={props => <Event {...props} />} />
+      <Route path="/search/:handle" exact render={props => <Search {...props} />} />
       <Route
         path="/landing-page"
         exact

@@ -105,7 +105,7 @@ class Index extends React.Component {
                               <Link to={"/event/" + rec._id} text="pirulito" ><Button
                                 className="mt-4"
                                 color="success"
-                                href="#pablo"
+                                href=""
                                 // onClick={e => e.preventDefault()}
                               >
                                 Comprar
