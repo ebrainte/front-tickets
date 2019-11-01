@@ -21,181 +21,139 @@ import {
 
 // core components
 import TicketsNavbar from "components/Navbars/TicketsNavbar.jsx";
-import CardsFooter from "components/Footers/CardsFooter.jsx";
+import ModalG from "../IndexSections/ModalG.jsx"
+import { Link } from "react-router-dom";
+import InputSearch from "../IndexSections/InputSearch.jsx"
 
 // index page sections
 import Download from "../IndexSections/Download.jsx";
 
 
-class Event extends React.Component {
-    state = {
-        eventData: []
-    };
+class Search extends React.Component {
+  state = {
+    eventData: [],
+    searchValue: this.props.match.params,
+    inputstate: [],
+    inputvalue: []
+  };
 
-    
-    componentDidMount() {
-        const { handle } = this.props.match.params
-        document.documentElement.scrollTop = 0;
-        document.scrollingElement.scrollTop = 0;
-        console.log("cargo esto");
+  //Esto es para pasar el evento del hijo al padre
+  constructor(props) {
+    super(props);
+    this.handler = this.handler.bind(this);
+  }
 
-        fetch('http://localhost:8080/apiTickets/getEventsbyId', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                id: handle
-            })
-        }).then(res => res.json())
-        .then((data) => {
-            console.log(data);
-            this.setState({ eventData: data })
-          })
+  handler(inputValue) {
+    this.setState({
+      inputstate: "redirect",
+      inputvalue: inputValue
+    })
+    console.log("Im on search and this is the search value: " + this.state.searchValue);
+  }
+
+
+  componentDidMount() {
+    const { handle } = this.props.match.params
+    document.documentElement.scrollTop = 0;
+    document.scrollingElement.scrollTop = 0;
+    console.log("cargo esto");
+
+    fetch('http://localhost:8080/apiTickets/getEventsbyName', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        eventName: handle
+      })
+    }).then(res => res.json())
+      .then((data) => {
+        console.log(data);
+        this.setState({ eventData: data })
+      })
     console.log(this.state.eventData);
+  }
+  render() {
+    if (this.state.inputstate === "redirect") {
+      console.log("i must leave here with this value:" + this.state.inputvalue);
+      this.props.history.push('/search/' + this.state.inputvalue)
     }
-    render() {
-      return (
-        <>
+    return (
+      <>
         <TicketsNavbar />
         <main ref="main">
-        <div className="position-relative">
-            {/* shape Hero */}
+          <div className="position-relative">
             <section className="section section-lg section-shaped pb-250">
               <div className="shape shape-style-1 shape-default">
               </div>
-        <Container className="py-lg-md d-flex">
-            asdasdasd 
-        </Container>
-        </section>
-        </div>
-        
-        <div className="shape shape-style-1 shape-default">
-                <span />
-                <span />
-                <span />
-                <span />
-                <span />
-                <span />
-                <span />
-                <span />
-                <span />
-              </div>
+              Resultados de la busqueda: {this.state.searchValue.handle}
+              <InputSearch action={this.handler} />
+            </section>
+          </div>
+
+          <div className="shape shape-style-1 shape-default">
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+          </div>
           <div className="position-relative"></div>
-          <section className="section section-lg section-shaped pb-250">
-            <section className="section bg-secondary">
-            {this.state.eventData.map((eventData) => (  
-                <Container>
-                    <Row className="row-grid align-items-center">
-                        <Col md="6">
-                        <Card className="bg-default shadow border-0">
-                            <CardImg
-                            alt="..."
-                            src={eventData.imageUrl}
-                            top
-                            />
-                            <blockquote className="card-blockquote">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="svg-bg"
-                                preserveAspectRatio="none"
-                                viewBox="0 0 583 95"
-                            >
-                                <polygon
-                                className="fill-default"
-                                points="0,52 583,95 0,95"
-                                />
-                                <polygon
-                                className="fill-default"
-                                opacity=".2"
-                                points="0,42 583,95 683,0 0,95"
-                                />
-                            </svg>
-                            <h4 className="display-3 font-weight-bold text-white">
-                               {eventData.eventName}
-                            </h4>
-                            <p className="lead text-italic text-white">
-                                Calificacion: {eventData.starAverage}<br></br>
-                                Precio: {eventData.eventPricing}
-                            </p>
-                            </blockquote>
-                        </Card>
-                        </Col>
-                        <Col md="6">
-                        <div className="pl-md-5">
-                            <div className="icon icon-lg icon-shape icon-shape-warning shadow rounded-circle mb-5">
-                            <i className="ni ni-check-bold" />
-                            </div>
-                            <h3>Informacion</h3>
-                            <p className="lead">
-                            {eventData.eventDescription}
-                            </p>
-                            <a
-                            className="font-weight-bold text-warning mt-5"
-                            href="#pablo"
-                            onClick={e => e.preventDefault()}
-                            >
-                            A beautiful UI Kit for impactful websites
-                            </a>
-                        </div>
-                        </Col>
-                    </Row>
-                </Container>
-            ))}
-            </section>
-            </section>
-            <section className="section section-lg">
-            {this.state.eventData.map((eventData) => (  
+          <section className="section pb-0 section-components">
             <Container>
-              <Row className="row-grid align-items-center">
-                <Col className="order-md-2" md="6">
-                  <img
-                    alt="..."
-                    className="img-fluid floating"
-                    src={require("assets/img/theme/promo-1.png")}
-                  />
-                </Col>
-                <Col className="order-md-1" md="6">
-                  <div className="pr-md-5">
-                    <div className="icon icon-lg icon-shape icon-shape-success shadow rounded-circle mb-5">
-                      <i className="ni ni-settings-gear-65" />
-                    </div>
-                    <h3>Donde es?</h3>
-                    <p>
-                      {eventData.eventLocation } <br></br>
-                      {eventData.eventAddress}
-                    </p>
-                    <ul className="list-unstyled mt-5">
-                      <li className="py-2">
-                        <div className="d-flex align-items-center">
-                          <div>
-                            <Badge
-                              className="badge-circle mr-3"
-                              color="success"
-                            >
-                              <i className="ni ni-satisfied" />
-                            </Badge>
-                          </div>
-                          <div>
-                            <h6 className="mb-0">
-                              Fecha: {eventData.eventDate}
+              <Row className="justify-content-center">
+                <Col lg="12">
+                  <Row className="row-grid">
+
+                    {this.state.eventData.map((rec) => (
+
+                      <Col lg="4">
+                        <Card className="card-lift--hover shadow border-0">
+                          <CardBody className="py-5">
+                            <div className="icon icon-shape icon-shape-success rounded-circle mb-4">
+                              <i className="ni ni-check-bold" />
+                            </div>
+                            <h6 className="text-success text-uppercase">
+                              {rec.eventName}
                             </h6>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
+                            <p className="description mt-3 box">
+                              {rec.eventDescription}
+                            </p>
+                            <div>
+                              <Badge color="success" pill className="mr-1">
+                                {rec.eventType}
+                              </Badge>
+                            </div>
+                            <ModalG buttonName="Ver mas" title={rec.eventName} body={rec.eventDescription} />
+                            <Link to={"/event/" + rec._id} text="pirulito" ><Button
+                              className="mt-4"
+                              color="success"
+                              href=""
+                            // onClick={e => e.preventDefault()}
+                            >
+                              Comprar
+                              </Button></Link>
+                          </CardBody>
+                        </Card>
+                      </Col>
+                    ))}
+                  </Row>
                 </Col>
               </Row>
             </Container>
-            ))}
+          </section>
+          <section className="section bg-secondary">
           </section>
         </main>
 
-    </>
+      </>
     );
   }
 }
 
-export default Event;
+export default Search;

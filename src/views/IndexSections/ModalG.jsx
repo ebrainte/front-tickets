@@ -15,50 +15,50 @@ class ModalG extends React.Component {
   render() {
     return (
       <>
-            <Button
-              className="mt-4"
-              color="success"
-              href="#pablo"
+        <Button
+          className="mt-4"
+          color="success"
+          href="#pablo"
+          onClick={() => this.toggleModal("info")}
+        >
+          {this.props.buttonName}
+        </Button>
+        <Modal
+          className="modal-dialog-centered"
+          isOpen={this.state.info}
+          toggle={() => this.toggleModal("info")}
+        >
+          <div className="modal-header">
+            <h6 className="modal-title" id="modal-title-default">
+              {this.props.title}
+            </h6>
+            <button
+              aria-label="Close"
+              className="close"
+              data-dismiss="modal"
+              type="button"
               onClick={() => this.toggleModal("info")}
             >
-              {this.props.buttonName}
-            </Button>
-            <Modal
-              className="modal-dialog-centered"
-              isOpen={this.state.info}
-              toggle={() => this.toggleModal("info")}
+              <span aria-hidden={true}>×</span>
+            </button>
+          </div>
+          <div className="modal-body">
+            <p>
+              {this.props.body}
+            </p>
+          </div>
+          <div className="modal-footer">
+            <Button
+              className="ml-auto"
+              color="link"
+              data-dismiss="modal"
+              type="button"
+              onClick={() => this.toggleModal("info")}
             >
-              <div className="modal-header">
-                <h6 className="modal-title" id="modal-title-default">
-                  {this.props.title}
-                </h6>
-                <button
-                  aria-label="Close"
-                  className="close"
-                  data-dismiss="modal"
-                  type="button"
-                  onClick={() => this.toggleModal("info")}
-                >
-                  <span aria-hidden={true}>×</span>
-                </button>
-              </div>
-              <div className="modal-body">
-                <p>
-                  {this.props.body}
-                </p>
-              </div>
-              <div className="modal-footer">
-                <Button
-                  className="ml-auto"
-                  color="link"
-                  data-dismiss="modal"
-                  type="button"
-                  onClick={() => this.toggleModal("info")}
-                >
-                  Cerrar
-                </Button>
-              </div>
-            </Modal>
+              Cerrar
+            </Button>
+          </div>
+        </Modal>
       </>
     );
   }

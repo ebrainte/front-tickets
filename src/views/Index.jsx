@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 // index page sections
 import Hero from "./IndexSections/Hero.jsx";
 import Buttons from "./IndexSections/Buttons.jsx";
-import Inputs from "./IndexSections/Inputs.jsx";
+import InputSearch from "./IndexSections/InputSearch.jsx";
 import CustomControls from "./IndexSections/CustomControls.jsx";
 import Menus from "./IndexSections/Menus.jsx";
 import Navbars from "./IndexSections/Navbars.jsx";
@@ -47,32 +47,64 @@ import {
 
 
 class Index extends React.Component {
+
+
+  //ive added inputstate to the state, so i can change the status after render()
   state = {
-    recommendations: []
+    recommendations: [],
+    inputstate: [],
+    inputvalue: []
   }
+
+  //Esto es para pasar el evento del hijo al padre
+  constructor(props) {
+    super(props);
+    this.handler = this.handler.bind(this);
+  }
+
+  handler(inputValue) {
+    this.setState({
+      inputstate: "redirect",
+      inputvalue: inputValue
+    })
+    console.log("Im on index and this is the search value: " + inputValue);
+  }
+
+  //when the component Index mounts, this gets executed
   componentDidMount() {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
     this.refs.main.scrollTop = 0;
 
     fetch('http://localhost:8080/apiTickets/getEvents')
-    .then(res => res.json())
-    .then((data) => {
-      this.setState({ recommendations: data })
-      console.log(this.state.recommendations)
-    })
-    .catch(console.log)
+      .then(res => res.json())
+      .then((data) => {
+        this.setState({ recommendations: data })
+        console.log(this.state.recommendations)
+      })
+      .catch(console.log)
   }
 
-  
+
+
+
   render() {
+    //thats the only way i found to enter here
+    if (this.state.inputstate === "redirect") {
+      console.log("i must leave here with this value:" + this.state.inputvalue);
+      this.props.history.push('/search/' + this.state.inputvalue)
+    }
     return (
+
+
+
       <>
+
         <TicketsNavbar />
         <main ref="main">
-        
+
           <Hero />
-          <Inputs />
+          <InputSearch action={this.handler} />
 
 
           <div>
@@ -82,8 +114,8 @@ class Index extends React.Component {
                   <Col lg="12">
                     <Row className="row-grid">
 
-                        {this.state.recommendations.map((rec) => (
-                          <Col lg="4">
+                      {this.state.recommendations.map((rec) => (
+                        <Col lg="4">
 
                           <Card className="card-lift--hover shadow border-0">
                             <CardBody className="py-5">
@@ -101,22 +133,22 @@ class Index extends React.Component {
                                   {rec.eventType}
                                 </Badge>
                               </div>
-                              <ModalG buttonName="Ver mas" title={rec.eventName} body={rec.eventDescription}/>
+                              <ModalG buttonName="Ver mas" title={rec.eventName} body={rec.eventDescription} />
                               <Link to={"/event/" + rec._id} text="pirulito" ><Button
                                 className="mt-4"
                                 color="success"
                                 href=""
-                                // onClick={e => e.preventDefault()}
+                              // onClick={e => e.preventDefault()}
                               >
                                 Comprar
                               </Button></Link>
                             </CardBody>
                           </Card>
-                          </Col>
-                        ))}
-                      
-                      
-                      
+                        </Col>
+                      ))}
+
+
+
                     </Row>
                   </Col>
                 </Row>
@@ -124,7 +156,7 @@ class Index extends React.Component {
             </section>
           </div>
           <div className="py-12 bg-secondary">
-          <TooltipPopover/>
+            <TooltipPopover />
           </div >
           <Carousel />
           <Buttons />
@@ -150,10 +182,10 @@ class Index extends React.Component {
               <Typography />
               <Modals />
               <Datepicker />
-              
+
             </Container>
           </section>
-          
+
           <Icons />
           <Login />
           <Download />
