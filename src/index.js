@@ -28,9 +28,10 @@ import Index from "views/Index.jsx";
 import Event from "views/routes/Event.jsx";
 import Search from "views/routes/Search.jsx";
 import Landing from "views/examples/Landing.jsx";
-import Login from "views/examples/Login.jsx";
+import Login from "views/routes/Login.jsx";
+import Logout from "views/routes/Logout.jsx";
 import Profile from "views/examples/Profile.jsx";
-import Register from "views/examples/Register.jsx";
+import Register from "views/routes/Register.jsx";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -38,22 +39,11 @@ ReactDOM.render(
       <Route path="/" exact render={props => <Index {...props} />} />
       <Route path="/event/:handle" exact render={props => <Event {...props} />} />
       <Route path="/search/:handle" exact render={props => <Search {...props} />} />
-      <Route
-        path="/landing-page"
-        exact
-        render={props => <Landing {...props} />}
-      />
+      <Route path="/landing-page" exact render={props => <Landing {...props} />} />
       <Route path="/login-page" exact render={props => <Login {...props} />} />
-      <Route
-        path="/profile-page"
-        exact
-        render={props => <Profile {...props} />}
-      />
-      <Route
-        path="/register-page"
-        exact
-        render={props => <Register {...props} />}
-      />
+      <Route path="/logout" exact render={props => <Logout {...props} />} />
+      <Route path="/profile-page" exact render={props => <Profile {...props} />} />
+      <Route path="/register-page" exact render={props => <Register {...props} />} />
       <Redirect to="/" />
     </Switch>
   </BrowserRouter>,

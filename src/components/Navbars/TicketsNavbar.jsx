@@ -22,8 +22,97 @@ import {
   UncontrolledTooltip
 } from "reactstrap";
 
+
+function LoggedInMenu(props){
+
+  const username = props.profileData.username;
+  console.log(props);
+  return (  
+  <UncontrolledDropdown nav>
+    <DropdownToggle nav>
+      <i className="ni ni-circle-08" />
+      <span className="nav-link-inner--text">Bienvenido, {username}</span>
+    </DropdownToggle>
+    <DropdownMenu>
+      <DropdownItem to="/profile-page" tag={Link}>
+        Ver Perfil
+      </DropdownItem>
+      <DropdownItem to="/logout" tag={Link}>
+        Cerrar Sesion
+      </DropdownItem>
+    </DropdownMenu>
+    </UncontrolledDropdown>
+    
+    )
+
+
+}
+
+function LoggedOutMenu(){
+
+  return (
+    <UncontrolledDropdown nav>
+    <DropdownToggle nav>
+      <i className="ni ni-circle-08" />
+      <span className="nav-link-inner--text">Inicia Sesion o Registrate</span>
+    </DropdownToggle>
+    <DropdownMenu>
+      <DropdownItem to="/login-page" tag={Link}>
+        Iniciar Sesion
+      </DropdownItem>
+      <DropdownItem to="/register-page" tag={Link}>
+        Registrarse
+      </DropdownItem>
+    </DropdownMenu>
+  </UncontrolledDropdown>
+ 
+  
+  )}
+
+function ProfileMenu(props){
+
+  const isLoggedIn = props.isLoggedIn;
+  const profileData = props.profileData;
+  if (isLoggedIn) {
+    return <LoggedInMenu profileData={profileData}/>;
+  }
+  return <LoggedOutMenu />;
+}
+
+
 class TicketsNavbar extends React.Component {
+
+  state = {
+    loginattributes: [],
+    loggedin: false
+  }
+
+
   componentDidMount() {
+    fetch('http://localhost:3001/loginstatus', {credentials: 'include'})
+    .then(res => res.json())
+    .then((data) => {
+      console.log("INFO DEL NAVBAR");
+      if(data.loggedin === true){
+        console.log("estoy logueado")
+
+        //bajo la informacion del usuario
+        fetch('http://localhost:3001/user', {credentials: 'include'})
+        .then(res => res.json())
+        .then((data) => {
+          this.setState({ loginattributes: data});
+          console.log(this.state.loginattributes);
+        })
+        .catch(console.log)
+
+      };
+      if(data.loggedin === false){
+        console.log("no estoy logueado")
+      };
+      this.setState({ loggedin: data.loggedin });
+    })
+    .catch(console.log)
+
     let headroom = new Headroom(document.getElementById("navbar-main"));
     // initialise
     headroom.init();
@@ -165,7 +254,15 @@ class TicketsNavbar extends React.Component {
                     </DropdownMenu>
                   </UncontrolledDropdown>
                 </Nav>
+                
+                
+                <Nav className="navbar-nav-hover align-items-lg-center ml-lg-auto" navbar>
+                  {/* Chequeo si estoy logueado o no, y muestro un menu distinto */}
+                  <ProfileMenu isLoggedIn={this.state.loggedin} profileData={this.state.loginattributes}/>
+
+                </Nav>
                 <Nav className="align-items-lg-center ml-lg-auto" navbar>
+
                   <NavItem>
                     <NavLink
                       className="nav-link-icon"
