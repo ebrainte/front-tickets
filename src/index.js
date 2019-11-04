@@ -30,7 +30,7 @@ import Search from "views/routes/Search.jsx";
 import Landing from "views/examples/Landing.jsx";
 import Login from "views/routes/Login.jsx";
 import Logout from "views/routes/Logout.jsx";
-import Profile from "views/examples/Profile.jsx";
+import Profile from "views/routes/Profile.jsx";
 import Register from "views/routes/Register.jsx";
 
 ReactDOM.render(

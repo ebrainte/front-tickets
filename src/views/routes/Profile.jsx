@@ -1,20 +1,4 @@
-/*!
 
-=========================================================
-* Argon Design System React - v1.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-design-system-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-design-system-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 
 // reactstrap components
@@ -25,10 +9,27 @@ import TicketsNavbar from "components/Navbars/TicketsNavbar.jsx";
 import SimpleFooter from "components/Footers/SimpleFooter.jsx";
 
 class Profile extends React.Component {
+
+  state = {
+    loginattributes: []
+  }
+
+
   componentDidMount() {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
     this.refs.main.scrollTop = 0;
+
+
+    fetch('http://localhost:3001/user', {credentials: 'include'})
+        .then(res => res.json())
+        .then((data) => {
+          this.setState({ loginattributes: data});
+          console.log(this.state.loginattributes);
+        })
+        .catch(console.log)
+
+      
   }
   render() {
     return (
@@ -74,7 +75,7 @@ class Profile extends React.Component {
                           <img
                             alt="..."
                             className="rounded-circle"
-                            src={require("assets/img/theme/team-4-800x800.jpg")}
+                            src="https://www.tinygraphs.com/squares/ghfhfghfh?theme=frogideas&numcolors=4&size=220&fmt=svg"
                           />
                         </a>
                       </div>
@@ -122,39 +123,26 @@ class Profile extends React.Component {
                     </Col>
                   </Row>
                   <div className="text-center mt-5">
+                    <h5>Nombre de Usuario: </h5>
+                    <h3>{this.state.loginattributes.username}</h3>
+                    <h5>Nombre Completo: </h5>
                     <h3>
-                      Jessica Jones{" "}
-                      <span className="font-weight-light">, 27</span>
+                      {this.state.loginattributes.fullName}
                     </h3>
                     <div className="h6 font-weight-300">
                       <i className="ni location_pin mr-2" />
-                      Bucharest, Romania
+                      Direccion: {this.state.loginattributes.address}
                     </div>
                     <div className="h6 mt-4">
                       <i className="ni business_briefcase-24 mr-2" />
-                      Solution Manager - Creative Tim Officer
+                      Email: {this.state.loginattributes.email}
                     </div>
                     <div>
                       <i className="ni education_hat mr-2" />
-                      University of Computer Science
+                      Número de teléfono: {this.state.loginattributes.cellphoneNumber}
                     </div>
                   </div>
-                  <div className="mt-5 py-5 border-top text-center">
-                    <Row className="justify-content-center">
-                      <Col lg="9">
-                        <p>
-                          An artist of considerable range, Ryan — the name taken
-                          by Melbourne-raised, Brooklyn-based Nick Murphy —
-                          writes, performs and records all of his own music,
-                          giving it a warm, intimate feel with a solid groove
-                          structure. An artist of considerable range.
-                        </p>
-                        <a href="#pablo" onClick={e => e.preventDefault()}>
-                          Show more
-                        </a>
-                      </Col>
-                    </Row>
-                  </div>
+                
                 </div>
               </Card>
             </Container>
