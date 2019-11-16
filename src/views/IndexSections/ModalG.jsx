@@ -17,7 +17,7 @@ class ModalG extends React.Component {
       <>
         <Button
           className="mt-4"
-          color="success"
+          color="primary"
           href="#pablo"
           onClick={() => this.toggleModal("info")}
         >
@@ -30,7 +30,7 @@ class ModalG extends React.Component {
         >
           <div className="modal-header">
             <h6 className="modal-title" id="modal-title-default">
-              {this.props.title}
+              {this.props.title} - {this.props.date}
             </h6>
             <button
               aria-label="Close"
@@ -44,7 +44,8 @@ class ModalG extends React.Component {
           </div>
           <div className="modal-body">
             <p>
-              {this.props.body}
+              {this.props.body}<br/>
+              {this.props.location}
             </p>
           </div>
           <div className="modal-footer">
