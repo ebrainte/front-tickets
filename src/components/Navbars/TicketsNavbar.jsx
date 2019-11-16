@@ -89,7 +89,7 @@ class TicketsNavbar extends React.Component {
 
 
   componentDidMount() {
-    fetch('http://localhost:3001/loginstatus', {credentials: 'include'})
+    fetch('http://back.arielsandor.com:47001/loginstatus', {credentials: 'include'})
     .then(res => res.json())
     .then((data) => {
       console.log("INFO DEL NAVBAR");
@@ -97,7 +97,7 @@ class TicketsNavbar extends React.Component {
         console.log("estoy logueado")
 
         //bajo la informacion del usuario
-        fetch('http://localhost:3001/user', {credentials: 'include'})
+        fetch('http://back.arielsandor.com:47001/user', {credentials: 'include'})
         .then(res => res.json())
         .then((data) => {
           this.setState({ loginattributes: data});

@@ -21,7 +21,7 @@ class Profile extends React.Component {
     this.refs.main.scrollTop = 0;
 
 
-    fetch('http://localhost:3001/user', {credentials: 'include'})
+    fetch('http://back.arielsandor.com:47001/user', {credentials: 'include'})
         .then(res => res.json())
         .then((data) => {
           this.setState({ loginattributes: data});

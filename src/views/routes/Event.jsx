@@ -22,6 +22,7 @@ import {
 // core components
 import TicketsNavbar from "components/Navbars/TicketsNavbar.jsx";
 import CardsFooter from "components/Footers/CardsFooter.jsx";
+import GMaps from "components/GMaps.jsx";
 
 // index page sections
 import Download from "../IndexSections/Download.jsx";
@@ -150,11 +151,7 @@ class Event extends React.Component {
             <Container>
               <Row className="row-grid align-items-center">
                 <Col className="order-md-2" md="6">
-                  <img
-                    alt="..."
-                    className="img-fluid floating"
-                    src={require("assets/img/theme/promo-1.png")}
-                  />
+                <GMaps latitude={eventData.geo[0]} longitude={eventData.geo[1]} name={eventData.eventLocation}/>
                 </Col>
                 <Col className="order-md-1" md="6">
                   <div className="pr-md-5">
@@ -182,6 +179,7 @@ class Event extends React.Component {
                               Fecha: {eventData.eventDate}
                             </h6>
                           </div>
+                          
                         </div>
                       </li>
                     </ul>

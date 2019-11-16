@@ -7,7 +7,7 @@ class Logout extends React.Component {
   //when the component mounts, this gets executed
   componentDidMount() {
     console.log("deslogueando");
-    fetch('http://localhost:3001/logout', {      
+    fetch('http://back.arielsandor.com:47001/logout', {      
         credentials: 'include',
         mode: "cors",})
       .then(res => res)

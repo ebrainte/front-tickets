@@ -81,7 +81,7 @@ class Register extends React.Component {
     console.log(payload);
 
     
-    fetch('http://localhost:3001/register', {
+    fetch('http://back.arielsandor.com:47001/register', {
       method: 'POST',
       credentials: 'include',
       mode: "cors",
