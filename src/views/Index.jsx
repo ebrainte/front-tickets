@@ -6,6 +6,7 @@ import { Container, Row } from "reactstrap";
 // core components
 import TicketsNavbar from "components/Navbars/TicketsNavbar.jsx";
 import CardsFooter from "components/Footers/CardsFooter.jsx";
+import SimpleFooter from "components/Footers/SimpleFooter.jsx";
 import { Link } from "react-router-dom";
 
 // index page sections
@@ -118,25 +119,23 @@ class Index extends React.Component {
                         <Col lg="4">
 
                           <Card className="card-lift--hover shadow border-0">
-                            <CardBody className="py-5">
-                              <div className="icon icon-shape icon-shape-success rounded-circle mb-4">
-                                <i className="ni ni-check-bold" />
-                              </div>
-                              <h6 className="text-success text-uppercase">
+                            <CardBody className="py-5">                              
+                              <h6 className="text-primary text-uppercase">
                                 {rec.eventName}
                               </h6>
+                              <CardImg alt="" src={rec.imageUrl} height={"160px"}/>
                               <p className="description mt-3 box">
                                 {rec.eventDescription}
                               </p>
                               <div>
-                                <Badge color="success" pill className="mr-1">
+                                <Badge color="primary" pill className="mr-1">
                                   {rec.eventType}
                                 </Badge>
                               </div>
-                              <ModalG buttonName="Ver mas" title={rec.eventName} body={rec.eventDescription} />
+                              <ModalG buttonName="Ver mas" title={rec.eventName} date={rec.eventDate} body={rec.eventDescription} location={rec.eventLocation} />
                               <Link to={"/event/" + rec._id} text="pirulito" ><Button
                                 className="mt-4"
-                                color="success"
+                                color="primary"
                                 href=""
                               // onClick={e => e.preventDefault()}
                               >
@@ -146,51 +145,15 @@ class Index extends React.Component {
                           </Card>
                         </Col>
                       ))}
-
-
-
                     </Row>
                   </Col>
                 </Row>
               </Container>
             </section>
           </div>
-          <div className="py-12 bg-secondary">
-            <TooltipPopover />
-          </div >
           <Carousel />
-          <Buttons />
-          <section className="section">
-            <Container>
-              <CustomControls />
-              <Menus />
-            </Container>
-          </section>
-          <Navbars />
-          <section className="section section-components">
-            <Container>
-              <Tabs />
-              <Row className="row-grid justify-content-between align-items-center mt-lg">
-                <Progress />
-                <Pagination />
-              </Row>
-              <Row className="row-grid justify-content-between">
-                <Pills />
-                <Labels />
-              </Row>
-              <Alerts />
-              <Typography />
-              <Modals />
-              <Datepicker />
-
-            </Container>
-          </section>
-
-          <Icons />
-          <Login />
-          <Download />
         </main>
-        <CardsFooter />
+        <SimpleFooter />
       </>
     );
   }

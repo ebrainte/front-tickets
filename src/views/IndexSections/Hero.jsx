@@ -8,8 +8,7 @@ class Hero extends React.Component {
     return (
       <>
         <div className="position-relative">
-          {/* Hero for FREE version */}
-          <section className="section section-lg section-hero section-shaped">
+          <section className="section section-sm section-hero section-shaped">
             {/* Background circles */}
             <div className="shape shape-style-1 shape-default">
               <span className="span-150" />
@@ -33,29 +32,25 @@ class Hero extends React.Component {
                     <div className="btn-wrapper mt-5">
                       <Button
                         className="btn-white btn-icon mb-3 mb-sm-0"
-                        color="github"
+                        color="primary"
                         href="https://www.creative-tim.com/product/argon-design-system-react?ref=adsr-landing-page"
                         size="lg"
                       >
                         <span className="btn-inner--icon mr-1">
-                          <i className="ni ni-cloud-download-95" />
+                          <i className="ni ni-cart" />
                         </span>
                         <span className="btn-inner--text">Quiero ver ofertas</span>
                       </Button>{"    "}
                       <Button
-                        className="btn-icon mb-3 mb-sm-0"
-                        color="default"
+                        className="btn-white btn-icon mb-3 mb-sm-0"
+                        color="primary"
                         href="https://github.com/creativetimofficial/argon-design-system-react"
                         size="lg"
-                        target="_blank"
                       >
                         <span className="btn-inner--icon mr-1">
-                          <i className="fa fa-github" />
+                          <i className="ni ni-user-run" />
                         </span>
-                        <span className="btn-inner--text">
-                          <span className="text-warning mr-1">Seguinos</span>
-                          en Facebook
-                        </span>
+                        <span className="btn-inner--text">Seguinos en Facebook</span>
                       </Button>
                     </div>
                   </Col>
