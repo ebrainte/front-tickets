@@ -27,11 +27,12 @@ import "assets/css/indexstyles.css";
 import Index from "views/Index.jsx";
 import Event from "views/routes/Event.jsx";
 import Search from "views/routes/Search.jsx";
-import Landing from "views/examples/Landing.jsx";
 import Login from "views/routes/Login.jsx";
 import Logout from "views/routes/Logout.jsx";
 import Profile from "views/routes/Profile.jsx";
 import Register from "views/routes/Register.jsx";
+import AddEvent from "views/routes/AddEvent.jsx";
+import Type from "views/routes/Type.jsx";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -39,11 +40,12 @@ ReactDOM.render(
       <Route path="/" exact render={props => <Index {...props} />} />
       <Route path="/event/:handle" exact render={props => <Event {...props} />} />
       <Route path="/search/:handle" exact render={props => <Search {...props} />} />
-      <Route path="/landing-page" exact render={props => <Landing {...props} />} />
+      <Route path="/type/:handle" exact render={props => <Type {...props} />} />
       <Route path="/login-page" exact render={props => <Login {...props} />} />
       <Route path="/logout" exact render={props => <Logout {...props} />} />
       <Route path="/profile-page" exact render={props => <Profile {...props} />} />
       <Route path="/register-page" exact render={props => <Register {...props} />} />
+      <Route path="/addevent" exact render={props => <AddEvent {...props} />} />
       <Redirect to="/" />
     </Switch>
   </BrowserRouter>,

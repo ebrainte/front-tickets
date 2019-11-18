@@ -20,34 +20,50 @@ import {
 // core components
 import TicketsNavbar from "components/Navbars/TicketsNavbar.jsx";
 import SimpleFooter from "components/Footers/SimpleFooter.jsx";
+import Loader from "components/Loader.jsx";
+import Alert from "components/Alert.jsx";
 
 class Login extends React.Component {
   state = {};
-  
-  
+
+
   constructor(props) {
     super(props);
     this.state = {
       username: '',
       password: '',
-      loginok: String
+      loginok: String,
+      loading: false,
+      alertVisible: false,
+      alertType: String,
+      alertMessage: String,
+      alertMessageStrong: String
+
     }
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
   }
+
+  componentDidMount() {
+
+    
+
+  }  
+
 
 
   handleUsernameChange(event) {
     console.log(event.target);
-    this.setState({username: event.target.value});
+    this.setState({ username: event.target.value });
     console.log(this.state.username);
   }
 
 
   handlePasswordChange(event) {
     console.log(event);
-    this.setState({password: event.target.value});
+    this.setState({ password: event.target.value });
     console.log(this.state.password);
   }
 
@@ -57,36 +73,53 @@ class Login extends React.Component {
   }
 
   handleClick(event) {
+    this.setState({ loading: true })
     event.preventDefault();
     var payload = {
       "username": this.state.username,
       "password": this.state.password
     }
 
+
     console.log(payload);
 
-    
+
+    setTimeout(
+      function() {
+          this.setState({alertVisible: false});
+      }
+      .bind(this),
+      4000
+    );
+
     fetch('http://back.arielsandor.com:47001/login', {
       method: 'POST',
       credentials: 'include',
       mode: "cors",
-      headers:{ 'Content-Type': 'application/json'},
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     }).then((response) => {
       if (response.ok) {
-        this.setState({loginok: "Bienvenido!"});
+        this.setState({ loading: false })
+        this.setState({ alertVisible: true, alertType: "success", alertMessageStrong: "Login exitoso!", alertMessage: "Se redirigira al index en 5 segundos!" })
+        this.setState({ loginok: "Bienvenido!" });
         console.log(response.json());
       } else {
-        this.setState({loginok: "Usuario o clave incorrecta, intente nuevamente!"});
+        this.setState({ loading: false })
+        this.setState({ alertVisible: true, alertType: "danger", alertMessageStrong: "Error!", alertMessage: "Usuario o clave incorrecta, intente nuevamente!" })
+        this.setState({ loginok: "Usuario o clave incorrecta, intente nuevamente!" });
         throw new Error('Usuario o clave incorrecta, intente nuevamente!');
       }
+
+
+
     })
-    .then((responseJson) => {
-      // Do something with the response
-    })
-    .catch((error) => {
-      console.log(error)
-    });
+      .then((responseJson) => {
+        // Do something with the response
+      })
+      .catch((error) => {
+        console.log(error)
+      });
   }
 
   componentDidMount() {
@@ -100,6 +133,7 @@ class Login extends React.Component {
         <TicketsNavbar />
         <main ref="main">
           <section className="section section-shaped section-lg">
+            {this.state.alertVisible && <Alert color={this.state.alertType} text={this.state.alertMessage} textStrong={this.state.alertMessageStrong} />}
             <div className="shape shape-style-1 bg-gradient-default">
               <span />
               <span />
@@ -122,8 +156,8 @@ class Login extends React.Component {
                         <Button
                           className="btn-neutral btn-icon"
                           color="default"
-                          href="#pablo"
-                          onClick={e => e.preventDefault()}
+                          href="http://back.arielsandor.com:47001/auth/facebook"
+                        // onClick={e => e.preventDefault()}
                         >
                           <span className="btn-inner--icon mr-1">
                             <img
@@ -166,7 +200,8 @@ class Login extends React.Component {
                               />
                             </InputGroup>
                           </FormGroup>
-                            {this.state.loginok}
+                          {this.state.loading && <Loader type="linear" />}
+                          {this.state.loginok}
                           <div className="text-center">
                             <Button
                               className="my-4"

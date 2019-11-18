@@ -40,7 +40,7 @@ class Event extends React.Component {
         document.scrollingElement.scrollTop = 0;
         console.log("cargo esto");
 
-        fetch('http://localhost:8080/apiTickets/getEventsbyId', {
+        fetch('http://localhost:47002/apiTickets/getEventsbyId', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

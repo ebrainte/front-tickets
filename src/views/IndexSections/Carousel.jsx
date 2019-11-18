@@ -29,7 +29,7 @@ class Carousel extends React.Component {
   
   componentDidMount() {
 
-    fetch('http://localhost:8080/apiTickets/getEvents')
+    fetch('http://localhost:47002/apiTickets/getEvents')
     .then(res => res.json())
     .then((data) => {
       console.log("primera linea");

@@ -143,7 +143,7 @@ class TicketsNavbar extends React.Component {
                       <Link to="/">
                         <img
                           alt="..."
-                          src={require("assets/img/brand/argon-react.png")}
+                          src={require("assets/img/brand/logo.png")}
                         />
                       </Link>
                     </Col>
@@ -181,8 +181,7 @@ class TicketsNavbar extends React.Component {
                         </Media>
                         <Media
                           className="d-flex align-items-center"
-                          href="https://demos.creative-tim.com/argon-design-system-react/#/documentation/colors?ref=adsr-navbar"
-                          target="_blank"
+                          to="/type/Cine" tag={Link}
                         >
                           <div className="icon icon-shape bg-gradient-success rounded-circle text-white">
                             {/* <i className="ni ni-palette" /> */}
@@ -198,8 +197,7 @@ class TicketsNavbar extends React.Component {
                         </Media>
                         <Media
                           className="d-flex align-items-center"
-                          href="https://demos.creative-tim.com/argon-design-system-react/#/documentation/alert?ref=adsr-navbar"
-                          target="_blank"
+                          to="/type/Teatro" tag={Link}
                         >
                           <div className="icon icon-shape bg-gradient-warning rounded-circle text-white">
                             {/* <i className="ni ni-ui-04" /> */}
@@ -215,8 +213,7 @@ class TicketsNavbar extends React.Component {
                         </Media>
                         <Media
                           className="d-flex align-items-center"
-                          href="https://demos.creative-tim.com/argon-design-system-react/#/documentation/alert?ref=adsr-navbar"
-                          target="_blank"
+                          to="/type/Musica" tag={Link}
                         >
                           <div className="icon icon-shape bg-gradient-primary rounded-circle text-white">
                             {/* <i className="ni ni-ui-04" /> */}

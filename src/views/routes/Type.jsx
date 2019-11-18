@@ -58,14 +58,14 @@ class Search extends React.Component {
     document.scrollingElement.scrollTop = 0;
     console.log("cargo esto");
 
-    fetch('http://localhost:47002/apiTickets/getEventsbyName', {
+    fetch('http://localhost:47002/apiTickets/getEventsbyType', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        eventName: handle
+        eventType: handle
       })
     }).then(res => res.json())
       .then((data) => {
@@ -87,7 +87,7 @@ class Search extends React.Component {
             <section className="section section-lg section-shaped pb-250">
               <div className="shape shape-style-1 shape-default">
               </div>
-              Resultados de la busqueda: {this.state.searchValue.handle}
+              Resultados de la busqueda por tipo: {this.state.searchValue.handle}
               <InputSearch action={this.handler} />
             </section>
           </div>
