@@ -18,6 +18,7 @@
 import React from "react";
 // nodejs library that concatenates classes
 import classnames from "classnames";
+import Location from "components/Location.jsx"
 import { Link } from "react-router-dom";
 
 // reactstrap components
@@ -57,7 +58,7 @@ class InputSearch extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.action(this.state.searchvalue);
+    this.props.action(this.state);
     console.log('Your input value is: ' + this.state.searchvalue);
     //Send state to the server code
   }
@@ -70,36 +71,47 @@ class InputSearch extends React.Component {
         <section className="section pb-0 section-components">
           <div className="py-5 bg-secondary">
             <Container>
-              <div className="mb-3">
-                <small className="text-uppercase font-weight-bold">
-                  Busca los mejores eventos:
-                </small>
-              </div>
               <Row>
-                <Col lg="11" md="11" sm="11">
-                  <form >
+                <div className="mb-3">
+                  <small className="text-uppercase font-weight-bold">
+                    Busca los mejores eventos:
+                </small>
+                </div>
+              </Row>
+              <Row>
+                <Col lg="12" md="12" sm="12">
+                  <form>
                     <FormGroup
                       className={classnames({
                         focused: this.state.searchAltFocused
                       })} role="form"
                     >
-                      <InputGroup className="input-group-alternative mb-4">
-                        <InputGroupAddon addonType="prepend">
-                          <InputGroupText>
-                            <i className="ni ni-zoom-split-in" />
-                          </InputGroupText>
-                        </InputGroupAddon>
-                        <Input
-                          placeholder="Busca un evento por nombre..."
-                          type="text"
-                          onFocus={e => this.setState({ searchAltFocused: true })}
-                          onBlur={e => this.setState({ searchAltFocused: false })}
-                          // onKeyDown={this.updateInput}
-                          onChange={this.updateInput}
+                      <Container>
+                        <Row>
+                          <Col lg="4" md="4" sm="4">
+                            <Location ></Location>
+                          </Col>
+                          <Col lg="8" md="8" sm="8">
+                            <InputGroup className="input-group-alternative mb-4">
 
-                        />
-                      </InputGroup>
-                      <Button className="btn-1 ml-1" color="danger" type="button" type="submit" onClick={e => this.handleSubmit(e)} value="Create Contact" >Buscar</Button>
+                              <InputGroupAddon addonType="prepend">
+                                <InputGroupText>
+                                  <i className="ni ni-zoom-split-in" />
+                                </InputGroupText>
+                              </InputGroupAddon>
+                              <Input
+                                placeholder="Busca un evento por nombre..."
+                                type="text"
+                                onFocus={e => this.setState({ searchAltFocused: true })}
+                                onBlur={e => this.setState({ searchAltFocused: false })}
+                                // onKeyDown={this.updateInput}
+                                onChange={this.updateInput}
+                              />
+                            </InputGroup>
+                          </Col>
+                        </Row>
+                      </Container>
+                      <Button className="btn-1 ml-1" color="danger" type="button" type="submit" onClick={e => this.handleSubmit(e)} value="Search" >Buscar</Button>
                     </FormGroup>
                   </form>
                 </Col>

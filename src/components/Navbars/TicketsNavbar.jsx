@@ -37,6 +37,9 @@ function LoggedInMenu(props){
       <DropdownItem to="/profile-page" tag={Link}>
         Ver Perfil
       </DropdownItem>
+      <DropdownItem to="/addevent" tag={Link}>
+        Agregar Nuevo Evento
+      </DropdownItem>
       <DropdownItem to="/logout" tag={Link}>
         Cerrar Sesion
       </DropdownItem>

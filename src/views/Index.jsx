@@ -51,7 +51,7 @@ class Index extends React.Component {
       inputstate: "redirect",
       inputvalue: inputValue
     })
-    console.log("Im on index and this is the search value: " + inputValue);
+    console.log("Im on index and this is the search value: " + inputValue.searchvalue);
   }
 
   //when the component Index mounts, this gets executed
@@ -75,8 +75,8 @@ class Index extends React.Component {
   render() {
     //thats the only way i found to enter here
     if (this.state.inputstate === "redirect") {
-      console.log("i must leave here with this value:" + this.state.inputvalue);
-      this.props.history.push('/search/' + this.state.inputvalue)
+      console.log("i must leave here with this value:" + this.state.inputvalue.searchvalue);
+      this.props.history.push('/search/' + this.state.inputvalue.searchvalue)
     }
     return (
 
