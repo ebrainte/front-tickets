@@ -27,12 +27,16 @@ class locationInput extends React.Component {
     }
 
 
-    componentDidMount() {
+    async componentDidMount() {
         // const updateTimer = React.useRef(null);
         // updateTimer.current = setTimeout(() => {
         //     this.getLocation(this.props.coords.latitude,this.props.coords.longitude);
         //     updateTimer.current = null;
         //   }, 4000);
+        await this.setState({
+            address: "Ingresa una direccion"
+        });
+        this.props.action(this.state);
 
     }
     toggleChange = async () => {
@@ -45,13 +49,16 @@ class locationInput extends React.Component {
 
     }
 
-    handleChange = (event) => {
-        this.setState({
+    handleChange = async (event) => {
+        await this.setState({
             address: event.target.value
         });
+        this.props.action(this.state);
+        console.log("Estoy cambiando el addressfield");
+        console.log(this.state);
     }
 
-    getLocation(latitude, longitude) {
+    async getLocation(latitude, longitude) {
         // geolocated({
         //     positionOptions: {
         //         enableHighAccuracy: false,
@@ -63,11 +70,13 @@ class locationInput extends React.Component {
         Geocode.setLanguage("es");
         Geocode.setRegion("ar");
         Geocode.enableDebug();
-        Geocode.fromLatLng(latitude, longitude).then(
+        await Geocode.fromLatLng(latitude, longitude).then(
             response => {
                 const address = response.results[0].formatted_address;
                 console.log(address);
                 this.setState({ address: address })
+                console.log(this.state);
+                this.props.action(this.state);
             },
             error => {
                 console.error(error);

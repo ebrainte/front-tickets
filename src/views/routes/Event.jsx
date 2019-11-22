@@ -21,7 +21,6 @@ import {
 
 // core components
 import TicketsNavbar from "components/Navbars/TicketsNavbar.jsx";
-import CardsFooter from "components/Footers/CardsFooter.jsx";
 import GMaps from "components/GMaps.jsx";
 
 // index page sections

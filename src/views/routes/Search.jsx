@@ -32,7 +32,8 @@ import Download from "../IndexSections/Download.jsx";
 class Search extends React.Component {
   state = {
     eventData: [],
-    searchValue: this.props.match.params,
+    searchValue: this.props.match.params.eventname,
+    searchAddress: this.props.match.params.address,
     inputstate: [],
     inputvalue: []
   };
@@ -53,7 +54,11 @@ class Search extends React.Component {
 
 
   componentDidMount() {
-    const { handle } = this.props.match.params
+    console.log("cargo esto");
+    const { eventname } = this.props.match.params
+    console.log(eventname);
+    const { address } = this.state.searchAddress;
+    console.log(address);
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
     console.log("cargo esto");
@@ -65,7 +70,8 @@ class Search extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        eventName: handle
+        eventName: eventname,
+        address: this.state.searchAddress
       })
     }).then(res => res.json())
       .then((data) => {
@@ -75,10 +81,10 @@ class Search extends React.Component {
     console.log(this.state.eventData);
   }
   render() {
-    if (this.state.inputstate === "redirect") {
-      console.log("i must leave here with this value:" + this.state.inputvalue);
-      this.props.history.push('/search/' + this.state.inputvalue)
-    }
+    // if (this.state.inputstate === "redirect") {
+    //   console.log("i must leave here with this value:" + this.state.inputvalue);
+    //   this.props.history.push('/search/' + this.state.inputvalue)
+    // }
     return (
       <>
         <TicketsNavbar />
@@ -87,8 +93,8 @@ class Search extends React.Component {
             <section className="section section-lg section-shaped pb-250">
               <div className="shape shape-style-1 shape-default">
               </div>
-              Resultados de la busqueda: {this.state.searchValue.handle}
-              <InputSearch action={this.handler} />
+              Resultados de la busqueda: {this.state.searchValue} con direccion: {this.state.searchAddress}
+              {/* <InputSearch action={this.handler} /> */}
             </section>
           </div>
 
@@ -123,6 +129,9 @@ class Search extends React.Component {
                             </h6>
                             <p className="description mt-3 box">
                               {rec.eventDescription}
+                            </p>
+                            <p className="description mt-3 box">
+                              A {rec.distance} de distancia
                             </p>
                             <div>
                               <Badge color="success" pill className="mr-1">

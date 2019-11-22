@@ -18,7 +18,7 @@ class ModalG extends React.Component {
         <Button
           className="mt-4"
           color="primary"
-          href="#pablo"
+          href="#losmasgrosos"
           onClick={() => this.toggleModal("info")}
         >
           {this.props.buttonName}

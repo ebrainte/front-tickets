@@ -71,11 +71,11 @@ class Profile extends React.Component {
                   <Row className="justify-content-center">
                     <Col className="order-lg-2" lg="3">
                       <div className="card-profile-image">
-                        <a href="#pablo" onClick={e => e.preventDefault()}>
+                        <a href="" onClick={e => e.preventDefault()}>
                           <img
                             alt="..."
                             className="rounded-circle"
-                            src="https://www.tinygraphs.com/squares/ghfhfghfh?theme=frogideas&numcolors=4&size=220&fmt=svg"
+                            src='https://www.tinygraphs.com/squares/profile?theme=frogideas&numcolors=4&size=220&fmt=svg'
                           />
                         </a>
                       </div>
@@ -88,7 +88,7 @@ class Profile extends React.Component {
                         <Button
                           className="mr-4"
                           color="info"
-                          href="#pablo"
+                          href=""
                           onClick={e => e.preventDefault()}
                           size="sm"
                         >
@@ -97,7 +97,7 @@ class Profile extends React.Component {
                         <Button
                           className="float-right"
                           color="default"
-                          href="#pablo"
+                          href=""
                           onClick={e => e.preventDefault()}
                           size="sm"
                         >
@@ -106,7 +106,7 @@ class Profile extends React.Component {
                       </div>
                     </Col>
                     <Col className="order-lg-1" lg="4">
-                      <div className="card-profile-stats d-flex justify-content-center">
+                      {/* <div className="card-profile-stats d-flex justify-content-center">
                         <div>
                           <span className="heading">22</span>
                           <span className="description">Friends</span>
@@ -119,10 +119,11 @@ class Profile extends React.Component {
                           <span className="heading">89</span>
                           <span className="description">Comments</span>
                         </div>
-                      </div>
+                      </div> */}
                     </Col>
                   </Row>
                   <div className="text-center mt-5">
+
                     <h5>Nombre de Usuario: </h5>
                     <h3>{this.state.loginattributes.username}</h3>
                     <h5>Nombre Completo: </h5>

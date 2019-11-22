@@ -41,7 +41,10 @@ ReactDOM.render(
     <Switch>
       <Route path="/" exact render={props => <Index {...props} />} />
       <Route path="/event/:handle" exact render={props => <Event {...props} />} />
-      <Route path="/search/:handle" exact render={props => <Search {...props} />} />
+      {/* <Route path="/search/:eventid/:address" exact render={props => <Search {...props} />} /> */}
+      <Route path="/search/:eventname/:address" component={Search} />
+
+      
       <Route path="/type/:handle" exact render={props => <Type {...props} />} />
       <Route path="/login-page" exact render={props => <Login {...props} />} />
       <Route path="/logout" exact render={props => <Logout {...props} />} />

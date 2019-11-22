@@ -44,22 +44,33 @@ class InputSearch extends React.Component {
 
     this.state = {
     }
-
+    this.handler = this.handler.bind(this);
     this.updateInput = this.updateInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  handler(inputValue) {
+    this.setState({
+      addressValue: inputValue
+    })
+    console.log(this.state);
+    console.log("BLABLABLABAL");
 
-  updateInput(event) {
-    this.setState({ searchvalue: event.target.value });
+  }
+
+  async updateInput(event) {
+    console.log("NUEVO EVENTO");
+    console.log(event);
+    await this.setState({ searchvalue: event.target.value });
     console.log(this.state.searchvalue);
   }
 
 
   handleSubmit(event) {
-    event.preventDefault();
+    // event.preventDefault();
     this.props.action(this.state);
     console.log('Your input value is: ' + this.state.searchvalue);
+    console.log('Your address value is: ' + this.state.addressValue.address);
     //Send state to the server code
   }
 
@@ -89,7 +100,7 @@ class InputSearch extends React.Component {
                       <Container>
                         <Row>
                           <Col lg="4" md="4" sm="4">
-                            <Location ></Location>
+                            <Location action={this.handler}></Location>
                           </Col>
                           <Col lg="8" md="8" sm="8">
                             <InputGroup className="input-group-alternative mb-4">

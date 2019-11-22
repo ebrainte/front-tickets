@@ -5,7 +5,6 @@ import { Container, Row } from "reactstrap";
 
 // core components
 import TicketsNavbar from "components/Navbars/TicketsNavbar.jsx";
-import CardsFooter from "components/Footers/CardsFooter.jsx";
 import SimpleFooter from "components/Footers/SimpleFooter.jsx";
 import { Link } from "react-router-dom";
 
@@ -52,6 +51,10 @@ class Index extends React.Component {
       inputvalue: inputValue
     })
     console.log("Im on index and this is the search value: " + inputValue.searchvalue);
+    console.log(inputValue);
+    if (inputValue.addressValue.address != "Ingresa una direccion") {
+      console.log("Im on index and this is the address value: " + inputValue.addressValue.address);
+    }
   }
 
   //when the component Index mounts, this gets executed
@@ -75,8 +78,14 @@ class Index extends React.Component {
   render() {
     //thats the only way i found to enter here
     if (this.state.inputstate === "redirect") {
-      console.log("i must leave here with this value:" + this.state.inputvalue.searchvalue);
-      this.props.history.push('/search/' + this.state.inputvalue.searchvalue)
+      
+      if (this.state.inputvalue.addressValue.address != "Ingresa una direccion") {
+        this.props.history.push('/search/' + this.state.inputvalue.searchvalue + "/" + this.state.inputvalue.addressValue.address)
+        console.log("i must leave here with this value:" + this.state.inputvalue.searchvalue + " " + this.state.inputvalue.addressValue.address);
+      }
+      else {
+        this.props.history.push('/search/' + this.state.inputvalue.searchvalue + "/Lima 775, Buenos Aires, Argentina")
+      }
     }
     return (
 
@@ -102,11 +111,11 @@ class Index extends React.Component {
                         <Col lg="4">
 
                           <Card className="card-lift--hover shadow border-0">
-                            <CardBody className="py-5">                              
+                            <CardBody className="py-5">
                               <h6 className="text-primary text-uppercase">
                                 {rec.eventName}
                               </h6>
-                              <CardImg alt="" src={rec.imageUrl} height={"160px"}/>
+                              <CardImg alt="" src={rec.imageUrl} height={"160px"} />
                               <p className="description mt-3 box">
                                 {rec.eventDescription}
                               </p>
