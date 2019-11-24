@@ -23,7 +23,7 @@ import {
 
 // core components
 import TicketsNavbar from "components/Navbars/TicketsNavbar.jsx";
-import SimpleFooter from "components/Footers/SimpleFooter.jsx";
+import Footer from "components/Footers/Footer.jsx";
 
 class Register extends React.Component {
   state = {};
@@ -246,7 +246,7 @@ class Register extends React.Component {
             </Container>
           </section>
         </main>
-        <SimpleFooter />
+        <Footer />
       </>
     );
   }

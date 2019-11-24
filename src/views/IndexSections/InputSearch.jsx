@@ -19,7 +19,6 @@ import React from "react";
 // nodejs library that concatenates classes
 import classnames from "classnames";
 import Location from "components/Location.jsx"
-import { Link } from "react-router-dom";
 
 // reactstrap components
 import {

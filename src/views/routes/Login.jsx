@@ -19,7 +19,7 @@ import {
 
 // core components
 import TicketsNavbar from "components/Navbars/TicketsNavbar.jsx";
-import SimpleFooter from "components/Footers/SimpleFooter.jsx";
+import Footer from "components/Footers/Footer.jsx";
 import Loader from "components/Loader.jsx";
 import Alert from "components/Alert.jsx";
 
@@ -45,14 +45,6 @@ class Login extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
 
   }
-
-  componentDidMount() {
-
-    
-
-  }  
-
-
 
   handleUsernameChange(event) {
     console.log(event.target);
@@ -87,6 +79,7 @@ class Login extends React.Component {
     setTimeout(
       function() {
           this.setState({alertVisible: false});
+          this.props.history.push('/');
       }
       .bind(this),
       4000
@@ -231,7 +224,7 @@ class Login extends React.Component {
             </Container>
           </section>
         </main>
-        <SimpleFooter />
+        <Footer />
       </>
     );
   }

@@ -22,6 +22,7 @@ import {
 // core components
 import TicketsNavbar from "components/Navbars/TicketsNavbar.jsx";
 import GMaps from "components/GMaps.jsx";
+import Footer from "components/Footers/Footer.jsx";
 
 // index page sections
 import Download from "../IndexSections/Download.jsx";
@@ -182,8 +183,8 @@ class Event extends React.Component {
             ))}
           </section>
         </main>
-        
 
+        <Footer />
       </>
     );
   }

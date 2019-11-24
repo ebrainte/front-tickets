@@ -24,6 +24,7 @@ import TicketsNavbar from "components/Navbars/TicketsNavbar.jsx";
 import ModalG from "../IndexSections/ModalG.jsx"
 import { Link } from "react-router-dom";
 import InputSearch from "../IndexSections/InputSearch.jsx"
+import Footer from "components/Footers/Footer.jsx";
 
 // index page sections
 import Download from "../IndexSections/Download.jsx";
@@ -159,7 +160,7 @@ class Search extends React.Component {
           <section className="section bg-secondary">
           </section>
         </main>
-
+        <Footer />
       </>
     );
   }

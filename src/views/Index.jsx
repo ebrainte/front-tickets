@@ -5,7 +5,7 @@ import { Container, Row } from "reactstrap";
 
 // core components
 import TicketsNavbar from "components/Navbars/TicketsNavbar.jsx";
-import SimpleFooter from "components/Footers/SimpleFooter.jsx";
+import Footer from "components/Footers/Footer.jsx";
 import { Link } from "react-router-dom";
 
 // index page sections
@@ -145,7 +145,7 @@ class Index extends React.Component {
           </div>
           <Carousel />
         </main>
-        <SimpleFooter />
+        <Footer />
       </>
     );
   }

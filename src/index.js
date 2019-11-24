@@ -34,7 +34,7 @@ import Register from "views/routes/Register.jsx";
 import AddEvent from "views/routes/AddEvent.jsx";
 import Type from "views/routes/Type.jsx";
 import Cart from "views/routes/Cart.jsx";
-import Location from "components/Location.jsx"
+import Buy from "views/routes/Buy.jsx"
 
 ReactDOM.render(
   <BrowserRouter>
@@ -52,7 +52,7 @@ ReactDOM.render(
       <Route path="/register-page" exact render={props => <Register {...props} />} />
       <Route path="/addevent" exact render={props => <AddEvent {...props} />} />
       <Route path="/cart" exact render={props => <Cart {...props} />} />
-      <Route path="/location" exact render={props => <Location {...props} />} />
+      <Route path="/buy/:handle" exact render={props => <Buy {...props} />} />
       <Redirect to="/" />
     </Switch>
   </BrowserRouter>,

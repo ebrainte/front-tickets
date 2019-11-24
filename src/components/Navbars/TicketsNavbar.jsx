@@ -23,61 +23,62 @@ import {
 } from "reactstrap";
 
 
-function LoggedInMenu(props){
+function LoggedInMenu(props) {
 
   const username = props.profileData.username;
   console.log(props);
-  return (  
-  <UncontrolledDropdown nav>
-    <DropdownToggle nav>
-      <i className="ni ni-circle-08" />
-      <span className="nav-link-inner--text">Bienvenido, {username}</span>
-    </DropdownToggle>
-    <DropdownMenu>
-      <DropdownItem to="/profile-page" tag={Link}>
-        Ver Perfil
+  return (
+    <UncontrolledDropdown nav>
+      <DropdownToggle nav>
+        <i className="ni ni-circle-08" />
+        <span className="nav-link-inner--text">Bienvenido, {username}</span>
+      </DropdownToggle>
+      <DropdownMenu>
+        <DropdownItem to="/profile-page" tag={Link}>
+          Ver Perfil
       </DropdownItem>
-      <DropdownItem to="/addevent" tag={Link}>
-        Agregar Nuevo Evento
+        <DropdownItem to="/addevent" tag={Link}>
+          Agregar Nuevo Evento
       </DropdownItem>
-      <DropdownItem to="/logout" tag={Link}>
-        Cerrar Sesion
+        <DropdownItem to="/logout" tag={Link}>
+          Cerrar Sesion
       </DropdownItem>
-    </DropdownMenu>
+      </DropdownMenu>
     </UncontrolledDropdown>
-    
-    )
+
+  )
 
 
 }
 
-function LoggedOutMenu(){
+function LoggedOutMenu() {
 
   return (
     <UncontrolledDropdown nav>
-    <DropdownToggle nav>
-      <i className="ni ni-circle-08" />
-      <span className="nav-link-inner--text">Inicia Sesion o Registrate</span>
-    </DropdownToggle>
-    <DropdownMenu>
-      <DropdownItem to="/login-page" tag={Link}>
-        Iniciar Sesion
+      <DropdownToggle nav>
+        <i className="ni ni-circle-08" />
+        <span className="nav-link-inner--text">Inicia Sesion o Registrate</span>
+      </DropdownToggle>
+      <DropdownMenu>
+        <DropdownItem to="/login-page" tag={Link}>
+          Iniciar Sesion
       </DropdownItem>
-      <DropdownItem to="/register-page" tag={Link}>
-        Registrarse
+        <DropdownItem to="/register-page" tag={Link}>
+          Registrarse
       </DropdownItem>
-    </DropdownMenu>
-  </UncontrolledDropdown>
- 
-  
-  )}
+      </DropdownMenu>
+    </UncontrolledDropdown>
 
-function ProfileMenu(props){
+
+  )
+}
+
+function ProfileMenu(props) {
 
   const isLoggedIn = props.isLoggedIn;
   const profileData = props.profileData;
   if (isLoggedIn) {
-    return <LoggedInMenu profileData={profileData}/>;
+    return <LoggedInMenu profileData={profileData} />;
   }
   return <LoggedOutMenu />;
 }
@@ -92,29 +93,29 @@ class TicketsNavbar extends React.Component {
 
 
   componentDidMount() {
-    fetch('http://back.arielsandor.com:47001/loginstatus', {credentials: 'include'})
-    .then(res => res.json())
-    .then((data) => {
-      console.log("INFO DEL NAVBAR");
-      if(data.loggedin === true){
-        console.log("estoy logueado")
+    fetch('http://back.arielsandor.com:47001/loginstatus', { credentials: 'include' })
+      .then(res => res.json())
+      .then((data) => {
+        console.log("INFO DEL NAVBAR");
+        if (data.loggedin === true) {
+          console.log("estoy logueado")
 
-        //bajo la informacion del usuario
-        fetch('http://back.arielsandor.com:47001/user', {credentials: 'include'})
-        .then(res => res.json())
-        .then((data) => {
-          this.setState({ loginattributes: data});
-          console.log(this.state.loginattributes);
-        })
-        .catch(console.log)
+          //bajo la informacion del usuario
+          fetch('http://back.arielsandor.com:47001/user', { credentials: 'include' })
+            .then(res => res.json())
+            .then((data) => {
+              this.setState({ loginattributes: data });
+              console.log(this.state.loginattributes);
+            })
+            .catch(console.log)
 
-      };
-      if(data.loggedin === false){
-        console.log("no estoy logueado")
-      };
-      this.setState({ loggedin: data.loggedin });
-    })
-    .catch(console.log)
+        };
+        if (data.loggedin === false) {
+          console.log("no estoy logueado")
+        };
+        this.setState({ loggedin: data.loggedin });
+      })
+      .catch(console.log)
 
     let headroom = new Headroom(document.getElementById("navbar-main"));
     // initialise
@@ -178,13 +179,13 @@ class TicketsNavbar extends React.Component {
                               Ofertas
                             </h6>
                             <p className="description d-none d-md-inline-block mb-0">
-                            Los mejores descuentos en tickets de cine, teatro y musica.
+                              Los mejores descuentos en tickets de cine, teatro y musica.
                             </p>
                           </Media>
                         </Media>
                         <Media
                           className="d-flex align-items-center"
-                          to="/type/Cine" tag={Link}
+                          to="/type/Cine" tag={Link} onClick={this.forceUpdate}
                         >
                           <div className="icon icon-shape bg-gradient-success rounded-circle text-white">
                             {/* <i className="ni ni-palette" /> */}
@@ -200,23 +201,23 @@ class TicketsNavbar extends React.Component {
                         </Media>
                         <Media
                           className="d-flex align-items-center"
-                          to="/type/Teatro" tag={Link}
+                          to="/type/Teatro" tag={Link} onClick={this.forceUpdate}
                         >
                           <div className="icon icon-shape bg-gradient-warning rounded-circle text-white">
-                            {/* <i className="ni ni-ui-04" /> */}
+                            {/* <i className="ni ni-palette" /> */}
                           </div>
                           <Media body className="ml-3">
-                            <h5 className="heading text-warning mb-md-1">
-                              TEATROS
-                            </h5>
+                            <h6 className="heading text-warning mb-md-1">
+                            TEATROS
+                            </h6>
                             <p className="description d-none d-md-inline-block mb-0">
-                              Todo el teatro para vos.
+                            Todo el teatro para vos.
                             </p>
                           </Media>
                         </Media>
                         <Media
                           className="d-flex align-items-center"
-                          to="/type/Musica" tag={Link}
+                          to="/type/Musica" tag={Link} onClick={this.forceUpdate}
                         >
                           <div className="icon icon-shape bg-gradient-primary rounded-circle text-white">
                             {/* <i className="ni ni-ui-04" /> */}
@@ -234,11 +235,11 @@ class TicketsNavbar extends React.Component {
                     </DropdownMenu>
                   </UncontrolledDropdown>
                 </Nav>
-                
-                
+
+
                 <Nav className="navbar-nav-hover align-items-lg-center ml-lg-auto" navbar>
                   {/* Chequeo si estoy logueado o no, y muestro un menu distinto */}
-                  <ProfileMenu isLoggedIn={this.state.loggedin} profileData={this.state.loginattributes}/>
+                  <ProfileMenu isLoggedIn={this.state.loggedin} profileData={this.state.loginattributes} />
 
                 </Nav>
                 <Nav className="align-items-lg-center ml-lg-auto" navbar>

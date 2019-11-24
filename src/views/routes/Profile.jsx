@@ -6,7 +6,7 @@ import { Button, Card, Container, Row, Col } from "reactstrap";
 
 // core components
 import TicketsNavbar from "components/Navbars/TicketsNavbar.jsx";
-import SimpleFooter from "components/Footers/SimpleFooter.jsx";
+import Footer from "components/Footers/Footer.jsx";
 
 class Profile extends React.Component {
 
@@ -149,7 +149,7 @@ class Profile extends React.Component {
             </Container>
           </section>
         </main>
-        <SimpleFooter />
+        <Footer />
       </>
     );
   }

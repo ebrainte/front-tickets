@@ -23,7 +23,7 @@ import {
 
 // core components
 import TicketsNavbar from "components/Navbars/TicketsNavbar.jsx";
-import SimpleFooter from "components/Footers/SimpleFooter.jsx";
+import Footer from "components/Footers/Footer.jsx";
 import Loader from "components/Loader.jsx";
 
 import ModalG from "../IndexSections/ModalG.jsx"
@@ -266,7 +266,7 @@ class AddEvent extends React.Component {
                         </Container>
                     </section>
                 </main>
-                <SimpleFooter />
+                <Footer />
             </>
         );
     }
